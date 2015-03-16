@@ -1,0 +1,8 @@
+<resources>
+	<Resource id="MyAppDS" type="javax.sql.DataSource">
+		JdbcDriver com.mysql.jdbc.Driver
+		JdbcUrl jdbc:mysql://localhost:3306/orgabot
+		UserName root
+		Password tuffkid
+	</Resource>
+</resources>
