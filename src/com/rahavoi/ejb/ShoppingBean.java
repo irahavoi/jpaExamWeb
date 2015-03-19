@@ -18,7 +18,6 @@ import com.rahavoi.entity.Employee;
 public class ShoppingBean {
 	@PersistenceContext(unitName="EmployeeFactory")
 	EntityManager em;
-	
 
 	public String getBeanInfo(){
 		Employee emp = em.find(Employee.class, 1);
