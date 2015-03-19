@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @Access(AccessType.FIELD)
@@ -42,8 +43,15 @@ public class Employee {
 	 * @Enumerated(EnumType.String) <-- String representation of the enum
 	 */
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@TableGenerator(name="Emp_Gen",
+			table="ID_GEN",
+			pkColumnName="GEN_NAME",
+			valueColumnName="GEN_VAL",
+			pkColumnValue="Emp_Gen",
+			initialValue=1000,
+			allocationSize=10)
+	@Id @GeneratedValue(generator="Emp_Gen")
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(name="name")//Excessive. no need in this annotation if the attribute name matches the column name.
