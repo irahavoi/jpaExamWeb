@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -41,6 +42,16 @@ public class Employee {
 	 * Enums may be mapped using @Enumerated annotation:
 	 * @Enumerated(EnumType.Ordinal) <-- used by default. gets converted to the integer (based on the natural order of the enum value) when persisting. Considered bad approach 
 	 * @Enumerated(EnumType.String) <-- String representation of the enum
+	 * 
+	 * 
+	 * Table Generator - if you do not use the automatic schema generation feature the table
+		must already exist or be created in the database through some other means and be configured to be in
+		this state when the application starts up for the first time.
+		
+		When using GenerationType.SEQUENCE, if generator is not specified, persistence provider will use a default sequence object of it's chosing.
+		To control the selected sequence, one must provide it's name in @SequenceGenerator:
+		@SequenceGenerator(name="Emp_Gen", sequenceName="Emp_Seq")
+		Unless schema generation is enabled, it would require that the sequence be defined and already exist!
 	 */
 	
 	@TableGenerator(name="Emp_Gen",
@@ -52,6 +63,7 @@ public class Employee {
 			allocationSize=10)
 	@Id @GeneratedValue(generator="Emp_Gen")
 	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer id;
 	
 	@Column(name="name")//Excessive. no need in this annotation if the attribute name matches the column name.
