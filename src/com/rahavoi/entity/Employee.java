@@ -64,6 +64,7 @@ public class Employee {
 	@Id @GeneratedValue(generator="Emp_Gen")
 	//@GeneratedValue(strategy=GenerationType.AUTO)
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="name")//Excessive. no need in this annotation if the attribute name matches the column name.
